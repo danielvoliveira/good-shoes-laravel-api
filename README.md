@@ -55,30 +55,41 @@ a) Baixe e instale o Composer através do link: https://getcomposer.org/Composer
 
 4) O projeto também utiliza o Passport Package, instalei ele através do comando no CMD forçando:
 
-a) composer require laravel/passport 
+```bash
 
-b) php artisan passport:install --force
+composer require laravel/passport 
+```
+
+```bash
+php artisan passport:install --force
+```
 
 -------------------
 
 5) Crie as migrations com o comando abaixo no cmd:
 
-a) php artisan migrate
+```bash
+php artisan migrate
+```
 
 -------------------
 
 6) Ative as seeds criadas com o comando abaixo no cmd:
 
-a) php artisan db:seed
+```bash
+php artisan db:seed
+```
 
 -------------------
 
-7) Inicie o servido com o comando abaixo no cmd:
+7) Inicie o servidor com o comando abaixo no cmd:
 
-a) php artisan serve
+```bash
+php artisan serve
+```
 
 -------------------
 
 8) Baixe o aplicativo Postman e importe o arquivo "Good Shoes.postman_collection":
 
-a) após exportação, inicie os testes.
+a) após exportação, inicie os testes começando pelo registro de um usuário em Auth/Register.
