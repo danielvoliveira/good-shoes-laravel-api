@@ -23,6 +23,4 @@ class Pedido extends Model
     		->with(['produto'])
     		->withPivot('quantidade');
     }
-
-
 }

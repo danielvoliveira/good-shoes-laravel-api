@@ -28,7 +28,7 @@ class PassportAuthController extends Controller
 		   
 		    $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-		    return response()->json(['token' => $token], 200); //retornamos um token de 200 caracteres
+		    return response()->json(['token' => $token], 200); //retornando o token
 
         } else{
 

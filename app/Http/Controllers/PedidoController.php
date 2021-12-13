@@ -65,9 +65,9 @@ class PedidoController extends Controller
         }
     }
  
-    public function update(Request $request, $id)
+    /*public function update(Request $request, $id)
     {
-        $pedido = auth()->user()->pedido()->find($id);
+        $pedido = Pedido::find($id);
  
         if (!$pedido) {
             return response()->json([
@@ -87,11 +87,11 @@ class PedidoController extends Controller
                 'success' => false,
                 'message' => 'Pedido can not be updated'
             ], 500);
-    }
+    }*/
  
-    public function destroy($id)
+    /*public function destroy($id)
     {
-        $pedido = auth()->user()->pedido()->find($id);
+        $pedido = Pedido::find($id);
  
         if (!$pedido) {
             return response()->json([
@@ -110,5 +110,5 @@ class PedidoController extends Controller
                 'message' => 'Pedido can not be deleted'
             ], 500);
         }
-    }
+    }*/
 }

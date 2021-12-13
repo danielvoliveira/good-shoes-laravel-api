@@ -7,60 +7,78 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About GoodShoes
+# About GoodShoes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Introdução:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Senhores, esse foi um grande desafio para mim, foi o meu primeiro contato desenvolvendo com o Laravel. De acordo os conceitos do framework foram se encaixando na minha cabeça, fui entendendo o porque dizem que esse framework é mágico. Não precisei relar em uma linha de SQL para moldar o banco, tudo é feito em PHP, isso é incrível.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Antes de começar o projeto eu montei um diagrama de entidade relacionamento, acrescentei algumas entidades que achava importante para trazer as formas normais para o projeto, acredito que isso deixe o sistema mais harmonico e profissional. A imagem do diagrama está no arquivo "Diagrama_Entidade_Relacionamento.png".
 
-## Learning Laravel
+Não consegui finalizar o projeto 100%, mas acredito que evolui bastante. Parti do zero, comecei pela instalação do PHP, depois instalei o Composer, criei um diretório para o projeto e dentro dele instalei o Laravel.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Consegui compreender os conceitos das migrations, models, controllers, routes e seeds dentro da ferramenta. Acredito que uma boa parte desse desafio foi realizada, sinto que consegui ir até 85% dele.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Cheguei a iniciar a parte de pedidos, a parte de listar pedidos e cadastrar um novo pedido funciona, mas não consegui finalizar o update e o delete, confesso que a ralação ManyToMany com tabela intermediária de 'item_pedido' foi um pouco difícil de criar, com mais um pouco de prazo eu creio que conseguiria concluir esse controller específico.
 
-## Laravel Sponsors
+Estou mandando também o projeto que criei dentro do Postman para fazer os testes de backend, funcionou corretamente: registro de usuários, login, crud de vendedor, crud de cliente, crud de produto, crud de lote, create e reload de pedido.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Gostei e me dediquei bastante para trabalhar nesse desafio, escolhi a parte de backend justamente pela curva de aprendizagem do framework. Os primeiros contatos com ferramentas novas sempre são desafiadores.
 
-### Premium Partners
+Sobre o readme.md, não consegui formular da maneira mais completa, também por contra do prazo, alguns comandos de instalação ficaram faltando.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+Enfim, espero que achem adequado o meu desempenho.
 
-## Contributing
+-------------------
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Passo a passo para instalação do GoodShoes:
 
-## Code of Conduct
+1) Instalação e configuração do PHP:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+a) Baixe e extraia o PHP através do link: https://windows.php.net/downloads/releases/php-8.1.0-nts-Win32-vs16-x64.zip dentro de (C:), criando uma pasta chamada "Php".
 
-## Security Vulnerabilities
+b) Acesse "Editar as variáveis de ambiente do sistema" através da barra de pesquisa do windows, clique em "Variáveis de Ambiente". Em "Variáveis do sistema" encontre a variável "Path", clique sobre ela e depois clique em "Editar". Em seguida clique em "Novo". Adicione o caminho para a pasta do PHP que deve ser "C:/Php" caso tenha seguido o passo anterior.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+c) Edite o "php.ini" arquivo dentro "C:/Php" do tipo "Parâmetro de configuração", removendo o ";" das linhas: "extension=fileinfo" e "extension=pdo_sqlite".
 
-## License
+-------------------
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2) Instalação e configuração do Composer:
+
+a) Baixe e instale o Composer através do link: https://getcomposer.org/Composer-Setup.exe
+
+-------------------
+
+3) Criei o projeto através do Composer, pela falta de tempo, não consegui levantar a sequência de comandos até a finalização da instalação do LARAVEL.
+
+-------------------
+
+4) O projeto também utiliza o Passport Package, instalei ele através do comando no CMD forçando:
+
+a) composer require laravel/passport 
+
+b) php artisan passport:install --force
+
+-------------------
+
+5) Crie as migrations com o comando abaixo no cmd:
+
+a) php artisan migrate
+
+-------------------
+
+6) Ative as seeds criadas com o comando abaixo no cmd:
+
+a) php artisan db:seed
+
+-------------------
+
+7) Inicie o servido com o comando abaixo no cmd:
+
+a) php artisan serve
+
+-------------------
+
+8) Baixe o aplicativo Postman e importe o arquivo "Good Shoes.postman_collection":
+
+a) após exportação, inicie os testes.
