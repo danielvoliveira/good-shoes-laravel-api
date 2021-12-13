@@ -16,23 +16,6 @@ class PedidoController extends Controller
         ]);
     }
  
-    public function show($id)
-    {
-        $pedido = Pedido::find($id);
- 
-        if (!$pedido) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Pedido not found '
-            ], 400);
-        }
- 
-        return response()->json([
-            'success' => true,
-            'data' => $pedido->toArray()
-        ], 400);
-    }
- 
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -64,8 +47,26 @@ class PedidoController extends Controller
             ], 500);
         }
     }
+
+    /*
+    public function show($id)
+    {
+        $pedido = Pedido::find($id);
  
-    /*public function update(Request $request, $id)
+        if (!$pedido) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pedido not found '
+            ], 400);
+        }
+ 
+        return response()->json([
+            'success' => true,
+            'data' => $pedido->toArray()
+        ], 400);
+    }
+ 
+    public function update(Request $request, $id)
     {
         $pedido = Pedido::find($id);
  
