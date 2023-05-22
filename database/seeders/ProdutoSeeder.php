@@ -15,17 +15,6 @@ class ProdutoSeeder extends Seeder
      */
     public function run()
     {
-		$user = User::all()->first();    	
-
-		if($user){
-			for($x=0; $x < 10; $x++){
-				Produto::firstOrCreate([
-		        	'nome' => 'Sapato numero '. $x,
-		        	'descricao' => 'O sapato mais elegante ' . $x,
-		        	'cor' => 'Preto',
-		        	'user_id' => $user->id
-		        ]);
-			}			
-		}
+		Produto::factory()->times(count:20)->create();
     }
 }
