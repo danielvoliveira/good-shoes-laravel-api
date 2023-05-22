@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class, //aqui deixamos de utilizar essa classe e passamos a utilizar PassportServiceProvider
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Laravel\Passport\PassportServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class, //Incluindo o PassportServiceProvider do tutorial
 
     ],
 
