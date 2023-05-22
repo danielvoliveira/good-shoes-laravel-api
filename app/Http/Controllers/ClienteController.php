@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Util;
 
 class ClienteController extends Controller
 {
@@ -48,41 +50,160 @@ class ClienteController extends Controller
         $cliente->nome = $request->nome;
         $cliente->cpf = $request->cpf;
         $cliente->data_nascimento = $request->data_nascimento;
- 
-        if (auth()->user()->cliente()->save($cliente))
+
+        $util = new Util();
+
+        //Validando Nome
+
+        $validatyName = $util->validatyName($cliente->nome);
+
+        if(!$util->verifySuccess($validatyName)){
+            return $validatyName;
+        }
+
+        $array_validatyName = $util->jsonToArray($validatyName);
+
+        //Verificando a disponibilidade do CPF
+
+        $disponibilityCPF = $util->disponibilityCPF($cliente->cpf);
+
+        if(!$util->verifySuccess($disponibilityCPF)){
+            return $disponibilityCPF;
+        }
+
+        $array_disponibilityCPF = $util->jsonToArray($disponibilityCPF);
+
+        //Verificando a validade do CPF
+
+        $validityCPF = $util->validityCPF($cliente->cpf);
+
+        if(!$util->verifySuccess($validityCPF)){
+            return $validityCPF;
+        }
+
+        $array_validityCPF = $util->jsonToArray($validityCPF);
+
+        //Validando Data
+
+        $validatyDate = $util->validatyDate($cliente->data_nascimento);
+
+        if(!$util->verifySuccess($validatyDate)){
+            return $validatyDate;
+        }
+
+        $array_validatyDate = $util->jsonToArray($validatyDate);
+
+        $cliente->nome = $array_validatyName["name"];
+        $cliente->cpf = $array_validityCPF["cpf"];
+        $cliente->data_nascimento = $array_validatyDate["date"];
+
+        if (auth()->user()->cliente()->save($cliente)){
             return response()->json([
                 'success' => true,
+                'message' => 'Client registered successfully',
                 'data' => $cliente->toArray()
             ]);
-        else
+        }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Cliente not added'
+                'message' => 'Client can not be added'
             ], 500);
+        }
     }
  
     public function update(Request $request, $id)
     {
         $cliente = Cliente::find($id);
- 
+        $array_validityCPF = null;
+        $array_validatyName = null;
+        $array_validatyDate = null;
+
+        $util = new Util();
+
         if (!$cliente) {
             return response()->json([
                 'success' => false,
-                'message' => 'Cliente not found'
+                'message' => 'Client not found'
             ], 400);
         }
- 
+
+        if($request->nome){
+            $validatyName = $util->validatyName($request->nome);
+
+            if(!$util->verifySuccess($validatyName)){
+                return $validatyName;
+            }
+
+            $array_validatyName = $util->jsonToArray($validatyName);
+        }
+
+        //Se a request CPF existe, ele verifica antes de atualizar
+
+        if($request->cpf){
+
+            $request->cpf = preg_replace( '/[^0-9]/is', '', $request->cpf);
+
+            if($cliente->cpf != $request->cpf) {
+                $disponibilityCPF = $util->disponibilityCPF($request->cpf);
+
+                if(!$util->verifySuccess($disponibilityCPF)){
+                    return $disponibilityCPF;
+                }
+
+                $array_disponibilityCPF = $util->jsonToArray($disponibilityCPF);
+            }
+                
+            $validityCPF = $util->validityCPF($request->cpf);
+
+            if(!$util->verifySuccess($validityCPF)){
+                return $validityCPF;
+            }
+
+            $array_validityCPF = $util->jsonToArray($validityCPF);
+        }
+
+        //Se a request Data existe, ele verifica antes de atualizar
+
+        if($request->data_nascimento){
+
+            $validatyDate = $util->validatyDate($request->data_nascimento);
+
+            if(!$util->verifySuccess($validatyDate)){
+                return $validatyDate;
+            }
+
+            $array_validatyDate = $util->jsonToArray($validatyDate);
+        }
+
         $updated = $cliente->fill($request->all())->save();
- 
-        if ($updated)
+
+        //Insere os campos tratados caso eles existam
+        if($request->cpf){
+            $cliente->cpf = $array_validityCPF["cpf"];
+            $cliente->save();
+        }
+
+        if($request->nome){
+            $cliente->nome = $array_validatyName["name"];
+            $cliente->save();
+        }
+
+        if($request->data_nascimento){
+            $cliente->data_nascimento = $array_validatyDate["date"];
+            $cliente->save();
+        }
+
+        if ($updated){
             return response()->json([
-                'success' => true
+                'success' => true,
+                'message' => 'Client successfully updated'
             ]);
-        else
+        }else{
             return response()->json([
                 'success' => false,
-                'message' => 'Cliente can not be updated'
+                'message' => 'Client can not be updated'
             ], 500);
+        }
     }
  
     public function destroy($id)
@@ -92,18 +213,19 @@ class ClienteController extends Controller
         if (!$cliente) {
             return response()->json([
                 'success' => false,
-                'message' => 'Cliente not found'
+                'message' => 'Client not found'
             ], 400);
         }
  
         if ($cliente->delete()) {
             return response()->json([
-                'success' => true
+                'success' => true,
+                'message' => 'Client successfully deleted'
             ]);
         } else {
             return response()->json([
                 'success' => false,
-                'message' => 'Cliente can not be deleted'
+                'message' => 'Client can not be deleted'
             ], 500);
         }
     }
