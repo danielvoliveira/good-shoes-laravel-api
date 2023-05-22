@@ -7,6 +7,7 @@ use Database\Seeders\VendedorSeeder;
 use Database\Seeders\ProdutoSeeder;
 use Database\Seeders\LoteSeeder;
 use Database\Seeders\ClienteSeeder;
+use Database\Seeders\CorSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,10 +19,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            //UserSeeder::class,
         	VendedorSeeder::class,
+            ClienteSeeder::class,
+            CorSeeder::class,
         	ProdutoSeeder::class,
 			LoteSeeder::class,
-			ClienteSeeder::class
+            //PedidoSeeder::class
         ]);
     }
 }
