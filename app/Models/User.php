@@ -6,7 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens; //utilizando o passport dentro de user
+
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function logAccess()
+    {
+        return $this->hasMany(logAccess::class);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -55,6 +61,11 @@ class User extends Authenticatable
     public function produto()
     {
         return $this->hasMany(Produto::class);
+    }
+
+    public function cor()
+    {
+        return $this->hasMany(Cor::class);
     }
 
     public function cliente()
@@ -71,23 +82,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pedido::class);
     }
-/*
-    //dentro de order
-    public function customer()
-    {
-        return $this->hasOne(Custumer::class);
-    }
-
-    //dentro de customer
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    //dentro de order
-    public function products()
-    {
-        return $this->hasMany(product::class);
-    }    */
-
 }
