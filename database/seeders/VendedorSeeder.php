@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+//use App\Models\User;
 use App\Models\Vendedor;
 
 class VendedorSeeder extends Seeder
@@ -15,7 +15,12 @@ class VendedorSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::all()->first();    	
+    	Vendedor::factory()->times(count:20)->create();
+
+    	//\App\Models\Vendedor::factory()->count(20)->create();
+
+
+        /*$user = User::all()->first();    	
 
 		if($user){			
 			Vendedor::firstOrCreate([        	
@@ -35,7 +40,7 @@ class VendedorSeeder extends Seeder
 	        	'nome' => 'Bianca',
 				'data_contratacao' => '2020-12-10'
 	        ]);			
-		}
+		}*/
     }
 }
 
