@@ -18,12 +18,14 @@ class CreateProdutoTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->text('nome');
-            $table->text('cor');
             $table->longText('descricao');
+            $table->unsignedBigInteger('cor_id');
+            $table->string('imagem', 100)->comment('Foto do Sapato');
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('cor_id')->references('id')->on('cors');
         });
     }
 

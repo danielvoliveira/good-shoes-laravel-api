@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVendedorTable extends Migration
+class CreateLogAccessesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateVendedorTable extends Migration
      */
     public function up()
     {
-        Schema::create('vendedors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('user_id');
-            $table->text('nome');
-            $table->date('data_contratacao');
+        Schema::create('log_accesses', function (Blueprint $table) {
+            $table->id();
+            $table->string('ip', 80);
+            $table->string('rota', 300);
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateVendedorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendedors');
+        Schema::dropIfExists('log_accesses');
     }
 }
