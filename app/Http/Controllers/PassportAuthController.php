@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PassportAuthController extends Controller
 {
-    /**
-     * Registration
-     */
-    public function register(Request $request)
-    {
+    public function register(Request $request){
     	
         $validation = Validator::make($request->all(), [
             'name' => 'required|min:4',//minimo 4 caracteres
@@ -28,36 +24,57 @@ class PassportAuthController extends Controller
 		   
 		    $token = $user->createToken('LaravelAuthApp')->accessToken;
 
-		    return response()->json(['token' => $token], 200); //retornando o token
+		    return response()->json([
+                'status' => true,
+                'token' => $token,
+                'message' => 'Register and login successfully'
+            ], 200);
 
-        } else{
-
+        }else{
         	return response()->json([
-                    'action' => 'registration',
-                    'status' => 422,
-                    'msg' => 'fail',
-                    'errors' => $validation->errors(),
-                ], 422);
+                    'status' => false,
+                    'message' => $validation->errors(),
+                    'sended_email' => $request->email
+                ], 400);
         }
- 
-        
     }
  
-    /**
-     * Login
-     */
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $data = [
             'email' => $request->email,
             'password' => $request->password
         ];
  
-        if (auth()->attempt($data)) {
+        if(auth()->attempt($data)){
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            
+            return response()->json([
+                'status' => true,
+                'token' => $token,
+                'message' => 'Login successfully'
+            ], 200);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Login unauthorised'
+            ], 401);
         }
-    }   
+    }
+
+    public function logout(/*Request $request*/){
+        
+        $token = auth()->user()->token()->revoke();
+
+        if($token){
+            return response()->json([
+                'status' => true,
+                'message' => 'Logout successfully'
+            ], 400);
+        }else{
+            return response()->json([
+                'status' => true,
+                'message' => 'Error when logging out'
+            ], 400);
+        }
+    }
 }
