@@ -17,7 +17,6 @@ class Pedido extends Model
         'item_pedido' => 'array'
     ];
 
-
     function item_pedido(){
     	return $this->belongsToMany(Lote::class, 'item_pedido', 'pedido_id', 'lote_id')
     		->with(['produto'])
