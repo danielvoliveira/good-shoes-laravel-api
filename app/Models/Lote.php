@@ -13,7 +13,6 @@ class Lote extends Model
         'user_id', 'produto_id', 'data_fabricacao', 'quantidade_fabricada', 'quantidade_disponivel', 'valor_unitario'
     ];    
 
-
     function produto(){
     	return $this->hasOne(Produto::class, 'id', 'produto_id');
     }
