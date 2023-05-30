@@ -25,7 +25,7 @@ To execute any requests groups, first complete the instalation and log in with "
 
 6) In root of project, create a file to database with the name "database.sqlite"
 
-5) Access the directory "./good-shoes-laravel-api" in CMD:
+5) Open in cmd and access the directory "./good-shoes-laravel-api":
 
 ```bash
 cd ./good-shoes-laravel-api
