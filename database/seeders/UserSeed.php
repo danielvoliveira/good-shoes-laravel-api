@@ -16,13 +16,13 @@ class UserSeed extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([     	
+        DB::table('users')->insert([
         	'id' => 1,
         	'name' => 'Daniel V A de Oliveira',
 			'email' => 'danielvitol@hotmail.com',
 			'password' => bcrypt('11111111')
-        ]);	
+        ]);
 
-        App\Models\User->createToken('LaravelAuthApp')->accessToken;
+        //App\Models\User->createToken('LaravelAuthApp')->accessToken;
     }
 }
