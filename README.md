@@ -1,4 +1,4 @@
-# About GoodShoes
+# GoodShoes Laravel API
 
 ## Introduction:
 
