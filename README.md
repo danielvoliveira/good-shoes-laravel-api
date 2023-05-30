@@ -23,6 +23,8 @@ To execute any requests groups, first complete the instalation and log in with "
 
 4) In root of project, find "./.env-example" and copy to "./.env"
 
+6) In root of project, create a file to database with the name "database.sqlite"
+
 5) Access the directory "./good-shoes-laravel-api" in CMD:
 
 ```bash
