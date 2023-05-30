@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
 use Database\Seeders\VendedorSeeder;
 use Database\Seeders\ProdutoSeeder;
 use Database\Seeders\LoteSeeder;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeed::class,
+            UserSeeder::class,
         	VendedorSeeder::class,
             ClienteSeeder::class,
             CorSeeder::class,
