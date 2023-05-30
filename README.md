@@ -21,17 +21,17 @@ To execute any requests groups, first complete the instalation and log in with "
 
 4) Download and install the Composer through the link: https://getcomposer.org/Composer-Setup.exe
 
-4) In root of project, find "./.env-example" and copy to "./.env"
+5) In root of project, find "./.env-example" and copy to "./.env"
 
 6) In root of project, create a file to database with the name "database.sqlite"
 
-5) Open in cmd and access the directory "./good-shoes-laravel-api":
+7) Open in cmd and access the directory "./good-shoes-laravel-api":
 
 ```bash
 cd ./good-shoes-laravel-api
 ```
 
-6) Run the commands bellow in order:
+8) Run the commands bellow in order:
 
 ```bash
 composer install
@@ -49,13 +49,13 @@ php artisan migrate
 php artisan passport:install --force
 ```
 
-6) Populate the database with seeds:
+9) Populate the database with seeds:
 
 ```bash
 php artisan db:seed
 ```
 
-7) Start server with command:
+10) Start server with command:
 
 ```bash
 php artisan serve
